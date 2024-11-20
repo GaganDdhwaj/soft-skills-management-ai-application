@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Lessons</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Vocabulary Lessons</h2>
+        <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+        <input type="text" id="search" placeholder="Search lessons...">
+        <div>
+            <label for="beginner">Beginner</label>
+            <input type="checkbox" id="beginner" name="beginner">
+            
+            <label for="intermediate">Intermediate</label>
+            <input type="checkbox" id="intermediate" name="intermediate">
+            
+            <label for="advanced">Advanced</label>
+            <input type="checkbox" id="advanced" name="advanced">
+        </div>
+        <ul id="lesson-list">
+            {% for lesson in lessons %}
+                <li>
+                    <h3>{{ lesson['title'] }}</h3>
+                    <p>{{ lesson['description'] }}</p>
+                    <p>Difficulty: {{ lesson['difficulty'] }}</p>
+                    <a href="#" class="start-lesson" data-id="{{ lesson['_id'] }}">Start Lesson</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <script src="{{ url_for("static', filename='js/script.js') }}"></script>
+</body>
+</html>
